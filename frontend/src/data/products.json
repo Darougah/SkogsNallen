@@ -1,0 +1,108 @@
+[
+  {
+    "id": 1,
+    "name": "Trätågset",
+    "category": "träleksaker",
+    "description": "Klassiskt trätågset med färgglada spår och lok.",
+    "price": "349 kr",
+    "oldPrice": "449 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "flerfärgad",
+    "rating": 4.7
+  },
+  {
+    "id": 2,
+    "name": "Mjukisnalle",
+    "category": "gosedjur",
+    "description": "Mjuk och gosig nalle perfekt för barn i alla åldrar.",
+    "price": "199 kr",
+    "oldPrice": "299 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "brun",
+    "rating": 4.5
+  },
+  {
+    "id": 3,
+    "name": "Byggklossar",
+    "category": "byggleksaker",
+    "description": "Kreativt byggkloss-set för att uppmuntra fantasi och färdigheter.",
+    "price": "499 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "flerfärgad",
+    "rating": 4.8
+  },
+  {
+    "id": 4,
+    "name": "Pussel för barn",
+    "category": "pussel",
+    "description": "Roligt och pedagogiskt pussel som tränar barns problemlösningsförmåga.",
+    "price": "149 kr",
+    "oldPrice": "199 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "flerfärgad",
+    "rating": 4.6
+  },
+  {
+    "id": 5,
+    "name": "Radiostyrd bil",
+    "category": "fordonsleksaker",
+    "description": "Snabb och smidig radiostyrd bil med kraftfull motor.",
+    "price": "599 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "röd",
+    "rating": 4.7
+  },
+  {
+    "id": 6,
+    "name": "Dockhus i trä",
+    "category": "dockor & dockhus",
+    "description": "Charmigt trädockhus med detaljerade möbler.",
+    "price": "799 kr",
+    "oldPrice": "999 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "rosa",
+    "rating": 4.9
+  },
+  {
+    "id": 7,
+    "name": "Leksakskök",
+    "category": "rollek & hushållsleksaker",
+    "description": "Interaktivt leksakskök med redskap och låtsasmat.",
+    "price": "699 kr",
+    "oldPrice": "899 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "vit",
+    "rating": 4.8
+  },
+  {
+    "id": 8,
+    "name": "Balanscykel för barn",
+    "category": "utomhusleksaker",
+    "description": "Perfekt balanscykel för att lära sig cykla utan stödhjul.",
+    "price": "899 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "blå",
+    "rating": 4.7
+  },
+  {
+    "id": 9,
+    "name": "Leklera set",
+    "category": "kreativa leksaker",
+    "description": "Färgglad leklera för att skapa roliga figurer och former.",
+    "price": "129 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "flerfärgad",
+    "rating": 4.5
+  },
+  {
+    "id": 10,
+    "name": "Leksaksgitarr",
+    "category": "musikinstrument",
+    "description": "Barnvänlig leksaksgitarr för små musiker.",
+    "price": "349 kr",
+    "oldPrice": "449 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "brun",
+    "rating": 3
+  }
+]
