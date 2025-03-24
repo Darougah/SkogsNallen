@@ -231,7 +231,7 @@ nav {
 .hero__content {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 60%;
   transform: translate(-15%, -50%);
 }
 
