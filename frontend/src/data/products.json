@@ -7,7 +7,7 @@
     "price": "349 kr",
     "oldPrice": "449 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "flerfärgad",
+    "color": "Flerfärgad",
     "rating": 4.7
   },
   {
@@ -18,7 +18,7 @@
     "price": "199 kr",
     "oldPrice": "299 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "brun",
+    "color": "Brun",
     "rating": 4.5
   },
   {
@@ -28,7 +28,7 @@
     "description": "Kreativt byggkloss-set för att uppmuntra fantasi och färdigheter.",
     "price": "499 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "flerfärgad",
+    "color": "Flerfärgad",
     "rating": 4.8
   },
   {
@@ -39,7 +39,7 @@
     "price": "149 kr",
     "oldPrice": "199 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "flerfärgad",
+    "color": "Flerfärgad",
     "rating": 4.6
   },
   {
@@ -49,7 +49,7 @@
     "description": "Snabb och smidig radiostyrd bil med kraftfull motor.",
     "price": "599 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "röd",
+    "color": "Röd",
     "rating": 4.7
   },
   {
@@ -60,7 +60,7 @@
     "price": "799 kr",
     "oldPrice": "999 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "rosa",
+    "color": "Rosa",
     "rating": 4.9
   },
   {
@@ -71,7 +71,7 @@
     "price": "699 kr",
     "oldPrice": "899 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "vit",
+    "color": "Vit",
     "rating": 4.8
   },
   {
@@ -81,7 +81,7 @@
     "description": "Perfekt balanscykel för att lära sig cykla utan stödhjul.",
     "price": "899 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "blå",
+    "color": "Blå",
     "rating": 4.7
   },
   {
@@ -91,7 +91,7 @@
     "description": "Färgglad leklera för att skapa roliga figurer och former.",
     "price": "129 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "flerfärgad",
+    "color": "Flerfärgad",
     "rating": 4.5
   },
   {
@@ -99,10 +99,65 @@
     "name": "Leksaksgitarr",
     "category": "spel-pyssel",
     "description": "Barnvänlig leksaksgitarr för små musiker.",
-    "price": "349 kr",
+    "price": "48 kr",
     "oldPrice": "449 kr",
     "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
-    "color": "brun",
+    "color": "Brun",
     "rating": 3
+  },
+  {
+    "id": 11,
+    "name": "LEGO Byggset",
+    "category": "pussel-bygg",
+    "description": "Spännande LEGO-byggset med massor av delar för kreativa barn.",
+    "price": "799 kr",
+    "oldPrice": "899 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "Flerfärgad",
+    "rating": 4.9
+  },
+  {
+    "id": 12,
+    "name": "Kramdjur Kanin",
+    "category": "gosedjur",
+    "description": "Söt och mjuk kanin perfekt för kramar.",
+    "price": "50 kr",
+    "oldPrice": "299 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "Vit",
+    "rating": 4.6
+  },
+  {
+    "id": 13,
+    "name": "Fiskespel",
+    "category": "spel-pyssel",
+    "description": "Roligt fiskespel för hela familjen.",
+    "price": "199 kr",
+    "oldPrice": "249 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "Blå",
+    "rating": 4.3
+  },
+  {
+    "id": 14,
+    "name": "Magnetiska bokstäver",
+    "category": "spel-pyssel",
+    "description": "Pedagogiska magnetiska bokstäver för lek och lärande.",
+    "price": "159 kr",
+    "oldPrice": "199 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "Flerfärgad",
+    "rating": 4.7
+  },
+  {
+    "id": 15,
+    "name": "Traktor med släp",
+    "category": "tra-leksaker",
+    "description": "Robust traktor med släp perfekt för små bönder.",
+    "price": "599 kr",
+    "oldPrice": "699 kr",
+    "image": "https://perfectcolourants.com/wp-content/uploads/2023/10/Toy.webp",
+    "color": "Grön",
+    "rating": 4.8
   }
 ]
