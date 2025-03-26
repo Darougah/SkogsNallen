@@ -35,7 +35,7 @@ const Search = () => {
     return (
         <>
      
-            <section className='section__container bg-primary-light'>
+            <section className='section__container bg-[#d4edda]'>
                 <h2 className='section__header capitalize'>Sök Leksaker</h2>
                 <p className='section__subheader'>Upptäck vårt breda utbud av leksaker för alla åldrar och intressen.</p>
             </section>

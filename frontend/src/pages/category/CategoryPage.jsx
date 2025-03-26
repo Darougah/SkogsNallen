@@ -23,7 +23,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            <section className='section__container bg-primary-light'>
+            <section className='section__container bg-[#d4edda]'>
                 <h2 className='section__header capitalize'>{categoryName}</h2>
                 <p className='section__subheader'>Upptäck vårt breda utbud av leksaker i olika kategorier.</p>
             </section>
