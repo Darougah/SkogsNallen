@@ -4,35 +4,53 @@ import ProductCards from './ProductCards';
 import ShopFiltering from './ShopFiltering';
 
 const filters = {
-  categories: ['all', 'gosedjur', 'tra-leksaker', 'pussel-bygg', 'spel-pyssel'],
-  colors: ['all', 'svart', 'röd', 'blå', 'grön', 'rosa', 'flerfärgad'],
+  categories: [
+    'alla',
+    'gosedjur',
+    'trä-leksaker',
+    'pussel-bygg',
+    'spel-pyssel',
+    'fordon',
+    'böcker',
+    'babykläder'
+  ],
+  colors: [
+    'alla',
+    'brun',
+    'vit',
+    'blå',
+    'röd',
+    'grön',
+    'rosa',
+    'ljusblå',
+    'flerfärgad'
+  ],
   priceRanges: [
-    { label: 'under 50 kr', min: 0, max: 50 },
+    { label: 'Under 50 kr', min: 0, max: 50 },
     { label: '50 kr - 100 kr', min: 50, max: 100 },
     { label: '100 kr - 150 kr', min: 100, max: 150 },
-    { label: '150 kr och över', min: 150, max: Infinity },
+    { label: '150 kr och över', min: 150, max: Infinity }
   ]
 };
 
 const ShopPage = () => {
   const [products, setProducts] = useState(productsData || []);
   const [filtersState, setFilterState] = useState({
-    category: 'all',
-    color: 'all',
+    category: 'alla',
+    color: 'alla',
     priceRange: ''
   });
 
   const applyFilters = () => {
-    let filteredProducts = [...productsData]; 
+    let filteredProducts = [...productsData];
 
-    if (filtersState.category !== 'all') {
+    if (filtersState.category !== 'alla') {
       filteredProducts = filteredProducts.filter(product =>
         product.category.toLowerCase() === filtersState.category.toLowerCase()
       );
     }
 
-
-    if (filtersState.color !== 'all') {
+    if (filtersState.color !== 'alla') {
       filteredProducts = filteredProducts.filter(product =>
         product.color.toLowerCase() === filtersState.color.toLowerCase()
       );
@@ -55,8 +73,8 @@ const ShopPage = () => {
 
   const clearFilters = () => {
     setFilterState({
-      category: 'all',
-      color: 'all',
+      category: 'alla',
+      color: 'alla',
       priceRange: ''
     });
   };
