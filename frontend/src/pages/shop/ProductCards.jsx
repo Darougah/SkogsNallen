@@ -33,7 +33,7 @@ function ProductCards({products}) {
 {/* product desc */}
 <div className='product__card__content'>
   <h4>{product.name}</h4>
-  <p>{product.price}{product.oldPrice ? <s>{product ?.oldPrice}</s>:null}</p>
+  <p>{product.price}kr{product.oldPrice ? <s> {product ?.oldPrice}kr</s>:null}</p>
 
 <RatingStars rating={product.rating}/>
 </div>
