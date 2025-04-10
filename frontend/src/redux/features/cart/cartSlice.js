@@ -50,6 +50,13 @@ state.grantTotal = setGrandTotal(state)
 state.totalPrice = setTotalPrice(state);
 state.tax = setTax(state)
 state.grantTotal = setGrandTotal(state);
+  },
+  clearCart:(state)=> {
+    state.products=[];
+    state.selectedItems=0;
+    state.totalPrice = 0;
+    state.tax = 0;
+    state.grantTotal =0;
   }
 }
 })
@@ -68,5 +75,5 @@ export const setGrandTotal =(state) =>{
   return setTotalPrice(state) + setTotalPrice(state) * state.taxRate
 }
 
-export const {addToCart, updateQuantity, removeFromCart} = cartSlice.actions;
+export const {addToCart, updateQuantity, removeFromCart , clearCart} = cartSlice.actions;
 export default cartSlice.reducer

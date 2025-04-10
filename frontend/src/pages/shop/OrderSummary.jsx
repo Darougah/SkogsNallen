@@ -1,10 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearCart } from '../../redux/features/cart/cartSlice';
 
 const OrderSummary = () => {
+  const dispatch = useDispatch()
   const products = useSelector((store) => store.cart.products);
   const { selectedItems, totalPrice, tax, taxRate, grantTotal } = useSelector((store) => store.cart);
 
+  const handleClearCart = ()=>{
+    dispatch(clearCart())
+  }
   return (
     <div className='bg-[#e6f4ea] mt-6 rounded-xl shadow-lg text-base border border-green-200'>
       <div className='px-6 py-6 space-y-5'>
@@ -24,7 +29,10 @@ const OrderSummary = () => {
         </div>
 
         <div className='mt-6 flex flex-col md:flex-row gap-4'>
-          <button className='bg-red-500 hover:bg-red-600 px-4 py-2 text-white rounded-md flex items-center justify-center gap-2 w-full shadow-sm'>
+          <button onClick={(e)=>{
+            e.stopPropagation();
+            handleClearCart();
+          }} className='bg-red-500 hover:bg-red-600 px-4 py-2 text-white rounded-md flex items-center justify-center gap-2 w-full shadow-sm'>
             <i className="ri-delete-bin-fill"></i>
             <span>Rensa kundvagn</span>
           </button>
