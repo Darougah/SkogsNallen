@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CartModal from '../pages/shop/CartModal';
 
 const Navbar = () => {
   const products = useSelector((state)=>state.cart.products);
@@ -49,7 +50,7 @@ const Navbar = () => {
 
     </nav>
     {
-      isCartOpen && <div> Cart Modal</div>
+      isCartOpen && <CartModal products={products} isOpen={isCartOpen} onClose={handleCartToggle}/>
     }
     </header>
   )
