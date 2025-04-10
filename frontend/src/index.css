@@ -1,31 +1,32 @@
 @import "tailwindcss";
-@theme {
-  --spacing-screen-2xl: 1400px;
-  --spacing-custom-1200: 1200px;
-  --spacing-custom-900: 900px;
-  --color-primary: #ed3849;
-  --color-primary-dark: #d23141;
-  --color-primary-light: #f4e5ec;
-  --text-dark: #0f172a;
-  --text-light: #64748b;
-  --extra-light: #f8fafc;
-}
-
-/* @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap"); */
-
+@import "tailwindcss";
 
 :root {
   --primary-color: #28a745;
-  --primary-color-dark: #218838; 
-  --primary-color-light: #d4edda; 
-  --text-dark: #0f172a;
-  --text-light: #64748b;
+  --primary-color-dark: #218838;
+  --primary-color-light: #d4edda;
+  --text-dark: #000000; /* updated to solid black */
+  --text-light: #444444; /* updated for readable soft gray */
   --extra-light: #f8fafc;
   --white: #ffffff;
   --max-width-1400: 1400px;
   --max-width-1200: 1200px;
   --max-width-900: 900px;
   --header-font: "Playfair Display", serif;
+}
+
+/* Keep the rest of the styles intact */
+
+@theme {
+  --spacing-screen-2xl: 1400px;
+  --spacing-custom-1200: 1200px;
+  --spacing-custom-900: 900px;
+  --color-primary: #28a745;
+  --color-primary-dark: #218838;
+  --color-primary-light: #d4edda;
+  --text-dark: #000000;
+  --text-light: #444444;
+  --extra-light: #f8fafc;
 }
 
 * {
@@ -574,6 +575,9 @@ nav {
     grid-template-columns: repeat(2, 1fr);
   }
   
+  .text-discount {
+    color: #dc2626; /* Tailwind red-600 */
+  }
 
 }
 
