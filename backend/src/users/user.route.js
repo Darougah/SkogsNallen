@@ -62,4 +62,40 @@ const isMatch = await user.comparePassword(password)
 // res.send({message: "Protected users"})
 // })
 
+
+//logout endpoint
+router.post('/logout', (req,res)=>{
+  res.clearCookie('token');
+  res.status(200).send({message:'Logged out successfully'})
+})
+
+
+//delete a user
+router.delete('/users/:id', async(req,res)=>{
+  try {
+    const {id}= req.params;
+    const user = await User.findByIdAndDelete(id);
+    if(!user){
+      return res.status(404).send({message:"User not found"})
+    }
+    res.status(200).send({message:"User deleted successfully"})
+  } catch (error) {
+    console.log("Error deleting user");
+    res.status(500).send({message:"Error deleting user"})
+  }
+})
+
+
+//get all users
+
+router.get('/users', async(req,res)=>{
+  try {
+    const users = await User.find({}, 'id email role').sort({createdAt: -1});
+    res.status(200).send(users)
+  } catch (error) {
+    console.log("Error fetching users");
+    res.status(500).send({message:"Error fetching user"})
+  }
+})
+
 module.exports= router;
