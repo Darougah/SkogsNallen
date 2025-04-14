@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('./user.model');
+const generateToken = require('../middleware/generateToken');
 const router = express.Router();
 
 //Register endpoint
@@ -28,8 +29,24 @@ const isMatch = await user.comparePassword(password)
   if(!isMatch){
     return res.status(401).send({message:'password not match'})
   }
-  
-  res.status(200).send({message:"Logged in successfully", user})
+
+  const token = await generateToken(user.id)
+  // console.log("token",token)
+  res.cookie('token',token, {
+    httpOnly:true, 
+    secure: true,
+    sameSite: 'None'
+  })
+
+  res.status(200).send({message:"Logged in successfully", token,user :{
+    id:user.id,
+    email: user.email,
+    username: user.username, 
+    role:user.role,
+    profileImage: user.profileImage,
+    bio: user.bio,
+    profession: user.profession
+  }})
   
 } catch (error) {
   console.log("Error logged in user");
