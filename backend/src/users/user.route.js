@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./user.model');
 const generateToken = require('../middleware/generateToken');
+// const verifyToken = require('../middleware/verifyToken');
 const router = express.Router();
 
 //Register endpoint
@@ -55,5 +56,10 @@ const isMatch = await user.comparePassword(password)
 
 })
 
+
+// //all users
+// router.get("/users",verifyToken, async(req,res)=>{
+// res.send({message: "Protected users"})
+// })
 
 module.exports= router;
