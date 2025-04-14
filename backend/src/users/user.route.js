@@ -98,4 +98,58 @@ router.get('/users', async(req,res)=>{
   }
 })
 
+
+//update user role
+router.put('/users/:id', async(req, res)=>{
+  try {
+    const {id}= req.params;
+    const {role}= req.body;
+    const user =await User.findByIdAndUpdate(id,{role}, {new:true});
+    if(!user){
+      res.status(404).send({message:"User not found"})
+    }
+    res.status(200).send({message:"User role updated successfully", user})
+  } catch (error) {
+    console.log("Error updating user role");
+    res.status(500).send({message:"Error updating user role"})
+  }
+})
+
+
+//edit or update profile
+router.patch('/edit-profile', async(req, res)=>{
+  try {
+    const {userId, username , profileImage, bio , profession} = req.body;
+    if(!userId){
+      res.status(400).send({message:"User ID is required "})
+    }
+    const user = await User.findById(userId)
+    // console.log(user)
+    if(!user){
+      res.status(400).send({message:"User not found "})
+    }
+
+//Update profile
+if(username !== undefined) user.username = username
+if(profileImage !== undefined) user.profileImage = profileImage
+if(bio !== undefined) user.bio = bio
+if(profession !== undefined) user.profession = profession
+
+await user.save();
+res.status(200).send({message: 'Profile updated successfully',
+  user:{
+  id:user.id,
+  email: user.email,
+  username: user.username, 
+  role:user.role,
+  profileImage: user.profileImage,
+  bio: user.bio,
+  profession: user.profession,
+}})
+  } catch (error) {
+    console.log("Error updating user profile");
+    res.status(500).send({message:"Error updating user profile"})
+  }
+})
+
 module.exports= router;
