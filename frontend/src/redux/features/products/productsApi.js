@@ -30,11 +30,11 @@ const productsApi = createApi({
       },
       providesTags: ["Products"],
     }),
-    fetchProductById: (builder) => ({
+    useFetchProductById: (builder) => ({
       query: (id) => `/${id}`,
       providesTags: (result, error, id) => [{ type: "Products", id }],
     }),
-    AddProduct: builder.mutation({
+    useAddProduct: builder.mutation({
       query: (newProduct) => ({
         url: "/create-product",
         method: "POST",
@@ -42,10 +42,10 @@ const productsApi = createApi({
         credentials: "include",
       }),
     }),
-    fetchRelatedProduct: builder.query({
+    useFetchRelatedProduct: builder.query({
       query: (id) => `/related/${id}`,
     }),
-    updateProduct: builder.mutation({
+    useUpdateProduct: builder.mutation({
       query: ({ id, ...rest }) => ({
         url: `/update-product/${id}`,
         method: "PATCH",
@@ -54,7 +54,7 @@ const productsApi = createApi({
       }),
       invalidatesTags: ["Products"],
     }),
-    deleteProduct: builder.mutation({
+    useDeleteProduct: builder.mutation({
       query: ({ id }) => ({
         url: `/${id}`,
         method: "DELETE",
@@ -65,6 +65,13 @@ const productsApi = createApi({
   }),
 });
 
-export const {useFetchAllProductQuery, ueseFetchProductByIdQuery, useAddProductMutation, useUpdateProductMutation , useDeleteProductMutation, useFetchRelatedProductsQuery} = productsApi
+export const {
+  useFetchAllProductsQuery,
+  useFetchProductByIdQuery,
+  useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+  useFetchRelatedProductQuery,
+} = productsApi;
 
 export default productsApi
