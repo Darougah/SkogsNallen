@@ -65,5 +65,19 @@ res.status(200).send({products,totalPages, totalProducts})
   }
 })
 
-
+//get single product
+router.get("/:id", async(req,res)=>{
+  try {
+    const productId = req.params.id;
+    const product = await Products.findById(productId).populate("author","email username");
+    if(!product){
+      return res.status(404).send({message: "Produkten hittades inte"})
+    }
+    const reviews = await Reviews.find({productId}).populate("userId","username email");
+    res.status(200).send({product,reviews})
+  } catch (error) {
+    console.error("Fel vid hämtning av produkten");
+    res.status(500).send({message: "Misslyckades med att hämta produkten"})
+  }
+})
 module.exports = router
