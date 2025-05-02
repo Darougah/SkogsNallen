@@ -42,7 +42,7 @@ const CartModal = ({ products, isOpen, onClose }) => {
             ) : (
               products.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className='flex flex-col md:flex-row md:items-center md:justify-between shadow-md rounded-lg md:p-4 p-2 mb-4 bg-[#f9f9f9]'
                 >
                   <div className='flex items-center gap-4'>
@@ -55,27 +55,27 @@ const CartModal = ({ products, isOpen, onClose }) => {
                     <div className='flex flex-col text-sm'>
                       <h5 className='font-semibold text-black'>{item.name}</h5>
                       <p className='text-gray-500'>
-                        {Number(item.price.replace(/[^0-9.-]+/g, '')).toFixed(2)} kr
+                      {Number(item.price).toFixed(2)} kr
                       </p>
                     </div>
                   </div>
 
                   <div className='flex flex-row items-center mt-3 md:mt-0'>
                     <button
-                      onClick={() => handleQuantity('decrement', item.id)}
+                      onClick={() => handleQuantity('decrement', item._id)}
                       className='w-7 h-7 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white'
                     >
                       -
                     </button>
                     <span className='px-3 text-black'>{item.quantity}</span>
                     <button
-                      onClick={() => handleQuantity('increment', item.id)}
+                      onClick={() => handleQuantity('increment', item._id)}
                       className='w-7 h-7 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 hover:bg-primary hover:text-white'
                     >
                       +
                     </button>
                     <button
-                    onClick={(e)=> handleRemove(e,item.id)}
+                    onClick={(e)=> handleRemove(e,item._id)}
                     className='text-red-500 hover:text-red-800 ml-4 text-sm'>Ta bort</button>
                   </div>
                 </div>

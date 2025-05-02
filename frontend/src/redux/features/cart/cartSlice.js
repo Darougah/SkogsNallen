@@ -14,7 +14,7 @@ name:'cart',
 initialState,
 reducers:{
   addToCart: (state, action)=> {
-const isExist = state.products.find((product)=> product.id === action.payload.id);
+const isExist = state.products.find((product)=> product._id === action.payload._id);
 if(!isExist){
   state.products.push({...action.payload,quantity:1})
 
@@ -29,7 +29,7 @@ state.grantTotal = setGrandTotal(state)
   updateQuantity: (state, action) => {
     const { id, type } = action.payload;
     state.products = state.products.map((product) => {
-      if (product.id === id) {
+      if (product._id === id) {
         if (type === 'increment') {
           product.quantity += 1;
         } else if (type === 'decrement' && product.quantity > 1) {
@@ -45,7 +45,7 @@ state.grantTotal = setGrandTotal(state)
     state.grantTotal = setGrandTotal(state);
   },
   removeFromCart: (state,action)=>{
-    state.products =state.products.filter((product)=>product.id !== action.payload.id);
+    state.products =state.products.filter((product)=>product._id !== action.payload.id);
     state.selectedItems = setSelectedItems(state);
 state.totalPrice = setTotalPrice(state);
 state.tax = setTax(state)
