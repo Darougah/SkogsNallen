@@ -1,6 +1,7 @@
 const express = require("express");
 const Products = require("../products/products.model");
 const Reviews = require("./reviews.model");
+const { UserInfo } = require("firebase-admin/auth");
 const router = express.Router();
 
 // POSTA en ny recension
@@ -48,4 +49,33 @@ router.post("/post-review", async (req, res) => {
   }
 });
 
+
+//total reviews count
+router.get("/total-reviews", async(req, res)=>{
+  try {
+    const totalReviews = await Reviews.countDocuments({});
+    res.status(200).send({totalReviews})
+  } catch (error) {
+    console.error("Error getting total review", error);
+    res.status(500).send({ message: "Failed to get review count" });
+  }
+})
+
+//get reviews by userId
+router.get("/:userId", async(req,res)=>{
+  const {userId}= req.params;
+  if(!userId){
+    return res.status(400).send({message:"User ID is required"});
+  }
+  try {
+    const reviews = await Reviews.find({userId: userId}).sort({createAt: -1});
+    if(reviews.length ===0){
+      return res.status(400).send({message: "No reviews found"});
+    }
+    res.status(200).send(reviews);
+  } catch (error) {
+    console.error("Error fetching review by user", error);
+    res.status(500).send({ message: "Failed to fetch reviews by user" });
+  }
+})
 module.exports = router;
