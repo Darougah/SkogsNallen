@@ -1,15 +1,48 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart } from '../../redux/features/cart/cartSlice';
+import { loadStripe } from '@stripe/stripe-js';
+import { getBaseURL } from '../../utils/baseURL';
 
 const OrderSummary = () => {
   const dispatch = useDispatch()
+  const {user} = useSelector(state => state.auth)
   const products = useSelector((store) => store.cart.products);
   const { selectedItems, totalPrice, tax, taxRate, grantTotal } = useSelector((store) => store.cart);
 
   const handleClearCart = ()=>{
     dispatch(clearCart())
   }
+
+//payment integration
+const makePayment = async(e)=>{
+const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK)
+const body = {
+  products: products,
+  userId:user?.id
+}
+const headers ={
+  "Content-Type": "application/json"
+}
+
+const response = await fetch (`${getBaseURL()}/api/orders/create-checkout-session`, {
+  method:"POST",
+  headers: headers,
+  body:JSON.stringify(body)
+})
+console.log(response)
+const session = await response.json()
+console.log("session", session)
+
+const result = stripe.redirectToCheckout({
+  sessionId:session.id
+})
+console.log("Result:",result)
+if(result.error){
+  console.log("Error:",result.error)
+}
+}
+
   return (
     <div className='bg-[#e6f4ea] mt-6 rounded-xl shadow-lg text-base border border-green-200'>
       <div className='px-6 py-6 space-y-5'>
@@ -37,7 +70,12 @@ const OrderSummary = () => {
             <span>Rensa kundvagn</span>
           </button>
 
-          <button className='bg-green-600 hover:bg-green-700 px-4 py-2 text-white rounded-md flex items-center justify-center gap-2 w-full shadow-sm'>
+          <button 
+          onClick={(e)=>{
+            e.stopPropagation();
+            makePayment()
+          }}
+          className='bg-green-600 hover:bg-green-700 px-4 py-2 text-white rounded-md flex items-center justify-center gap-2 w-full shadow-sm'>
             <i className="ri-bank-card-2-line"></i>
             <span>Gå till betalning</span>
           </button>
