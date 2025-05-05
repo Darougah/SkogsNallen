@@ -61,10 +61,10 @@ router.post("/confirm-payment", async (req, res) => {
         amount,
         products: lineItems,
         email: session.customer_details.email,
-        status: session.payment_intent.status === "succeeded" ? "pending" : "failed",
+        status: session.payment_intent.status === "succeeded" ? "Mottagen" : "Misslyckad",
       });
     } else {
-      order.status = session.payment_intent.status === "succeeded" ? "pending" : "failed";
+      order.status = session.payment_intent.status === "succeeded" ? "Mottagen" : "Misslyckad";
     }
 
     await order.save();
