@@ -10,6 +10,7 @@ import Register from "../components/Register";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,11 @@ const router = createBrowserRouter([
         element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
         children: [
           //user routes
-          { path: "",element: <div>Användarpanel</div>},
-          { path: "orders",element: <div>Beställningar</div>},
-          { path: "payments",element: <div>Betalningar</div>},
-          { path: "profile",element: <div>Profil</div>},
-          { path: "reviews",element: <div>Recensioner</div>},
+          { path: "", element: <UserDMain /> },
+          { path: "orders", element: <div>Beställningar</div> },
+          { path: "payments", element: <div>Betalningar</div> },
+          { path: "profile", element: <div>Profil</div> },
+          { path: "reviews", element: <div>Recensioner</div> },
 
 
 
