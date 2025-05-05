@@ -30,11 +30,11 @@ const router = createBrowserRouter([
         element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
         children: [
           //user routes
-          { path: "",element: <div>User Dashboard</div>},
-          { path: "orders",element: <div>User Order</div>},
-          { path: "payments",element: <div>User Payments</div>},
-          { path: "profile",element: <div>User Profile</div>},
-          { path: "reviews",element: <div>User Reviews</div>},
+          { path: "",element: <div>Användarpanel</div>},
+          { path: "orders",element: <div>Beställningar</div>},
+          { path: "payments",element: <div>Betalningar</div>},
+          { path: "profile",element: <div>Profil</div>},
+          { path: "reviews",element: <div>Recensioner</div>},
 
 
 
@@ -42,12 +42,12 @@ const router = createBrowserRouter([
 
           //admin routes
 
-          { path: "admin", element: <PrivateRoute role="admin"><div>Admin Dashboard</div></PrivateRoute> },
-          { path: "add-new-post", element: <PrivateRoute role="admin"><div>New Post</div></PrivateRoute> },
-          { path: "manage-products", element: <PrivateRoute role="admin"><div>Manage Products</div></PrivateRoute> },
-          { path: "update-product/:id", element: <PrivateRoute role="admin"><div>Update Product</div></PrivateRoute> },
-          { path: "users", element: <PrivateRoute role="admin"><div>All Users</div></PrivateRoute> },
-          { path: "manage-orders", element: <PrivateRoute role="admin"><div>Manage Orders</div></PrivateRoute> },
+          { path: "admin", element: <PrivateRoute role="admin"><div>Adminpanel</div></PrivateRoute> },
+          { path: "add-new-post", element: <PrivateRoute role="admin"><div>Skapa Ny Produkt</div></PrivateRoute> },
+          { path: "manage-products", element: <PrivateRoute role="admin"><div>Hantera Produkter</div></PrivateRoute> },
+          { path: "update-product/:id", element: <PrivateRoute role="admin"><div>Uppdatera Produkt</div></PrivateRoute> },
+          { path: "users", element: <PrivateRoute role="admin"><div>Alla Användare</div></PrivateRoute> },
+          { path: "manage-orders", element: <PrivateRoute role="admin"><div>Hantera Beställningar</div></PrivateRoute> },
           
         ],
       },
