@@ -12,6 +12,7 @@ import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
 import UserOrders from "../pages/dashboard/user/UserOrders";
+import OrderDetails from "../pages/dashboard/user/orderDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
 path:"/orders/:orderId",
-element:<div>Order Detail</div>
+element:<OrderDetails/>
       },
       {
         path: "/dashboard",

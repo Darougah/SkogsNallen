@@ -9,8 +9,22 @@ export const TimelineStep = ({
   icon,
   description
 }) => {
-  const iconBgColor = isCompleted || isCurrent ? `bg-${icon.bgColor}` : 'bg-gray-100';
-  const iconTextColor = isCompleted || isCurrent ? 'text-white' : `text-${icon.textColor}`;
+  const bgColors = {
+    'red-500': 'bg-red-500',
+    'yellow-800': 'bg-yellow-800',
+    'blue-800': 'bg-blue-800',
+    'green-800': 'bg-green-800',
+  };
+
+  const textColors = {
+    'gray-800': 'text-gray-800',
+    'yellow-800': 'text-yellow-800',
+    'blue-800': 'text-blue-800',
+    'green-900': 'text-green-900',
+  };
+
+  const iconBgColor = isCompleted || isCurrent ? bgColors[icon.bgColor] : 'bg-gray-100';
+  const iconTextColor = isCompleted || isCurrent ? 'text-white' : textColors[icon.textColor];
   const connectorColor = isCompleted ? 'bg-green-500' : 'bg-gray-300';
   const labelTextColor = isCompleted || isCurrent ? 'text-gray-900' : 'text-gray-500';
   const descriptionTextColor = isCompleted || isCurrent ? 'text-gray-700' : 'text-gray-400';

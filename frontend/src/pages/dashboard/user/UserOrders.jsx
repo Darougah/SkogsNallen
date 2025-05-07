@@ -1,14 +1,13 @@
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useGetOrdersByEmailQuery } from "../../../redux/features/orders/orderApi";
 
-const statusMap = {
-  completed: "Klar",
-  pending: "Mottagen",
-  processing: "Behandlas",
-  shipped: "Skickad"
+const statusColorMap = {
+  Klar: "bg-green-800 text-white",
+  Mottagen: "bg-red-500 text-white",
+  Behandlas: "bg-yellow-800 text-white",
+  Skickad: "bg-blue-800 text-white",
 };
 
 const UserOrders = () => {
@@ -55,20 +54,14 @@ const UserOrders = () => {
                     </td>
                     <td className="px-6 py-3">
                       <span
-                        className={`px-2 py-1 rounded text-xs font-medium 
-                        ${order.status === "completed"
-                            ? "bg-green-100 text-green-700"
-                            : order.status === "pending"
-                            ? "bg-red-100 text-red-700"
-                            : order.status === "processing"
-                            ? "bg-yellow-100 text-yellow-700"
-                            : "bg-blue-100 text-blue-700"
-                          }`}
+                        className={`px-2 py-1 rounded text-xs font-medium ${statusColorMap[order.status] || "bg-gray-100 text-gray-700"}`}
                       >
-                        {statusMap[order.status] || order.status}
+                        {order.status}
                       </span>
                     </td>
-                    <td className="px-6 py-3">{order.amount?.toFixed(2)} kr</td>
+                    <td className="px-6 py-3">
+                      {order.amount?.toFixed(2)} kr
+                    </td>
                     <td className="px-6 py-3">
                       <Link to={`/orders/${order._id}`} className="text-green-600 hover:underline">
                         Visa beställning
