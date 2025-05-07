@@ -11,6 +11,7 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
+import UserOrders from "../pages/dashboard/user/UserOrders";
 
 const router = createBrowserRouter([
   {
@@ -27,22 +28,21 @@ const router = createBrowserRouter([
         element: <PaymentSuccess />,
       },
       {
+path:"/orders/:orderId",
+element:<div>Order Detail</div>
+      },
+      {
         path: "/dashboard",
         element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
         children: [
           //user routes
           { path: "", element: <UserDMain /> },
-          { path: "orders", element: <div>Beställningar</div> },
+          { path: "orders", element: <UserOrders/> },
           { path: "payments", element: <div>Betalningar</div> },
           { path: "profile", element: <div>Profil</div> },
           { path: "reviews", element: <div>Recensioner</div> },
 
-
-
-
-
           //admin routes
-
           { path: "admin", element: <PrivateRoute role="admin"><div>Adminpanel</div></PrivateRoute> },
           { path: "add-new-post", element: <PrivateRoute role="admin"><div>Skapa Ny Produkt</div></PrivateRoute> },
           { path: "manage-products", element: <PrivateRoute role="admin"><div>Hantera Produkter</div></PrivateRoute> },
