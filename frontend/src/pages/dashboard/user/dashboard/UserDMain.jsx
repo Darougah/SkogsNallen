@@ -46,21 +46,26 @@ const UserDMain = () => {
       legend: {
         position: 'top',
       },
-      tooltip: {
-        callbacks: {
-          label: function (tooltipItem) {
-            const label = tooltipItem.label;
-            const value = tooltipItem.raw;
-            if (label.includes('recensioner')) {
-              return `Antal recensioner: ${value / 100}`;
-            }
-            if (label.includes('produkter')) {
-              return `Köpta produkter: ${value / 100}`;
-            }
-            return `Totala betalningar: ${value.toFixed(2)} kr`;
-          }
-        }
+tooltip: {
+  callbacks: {
+    label: function (tooltipItem) {
+      const label = tooltipItem.label;
+      const value = tooltipItem.raw;
+
+      if (label.includes('recensioner')) {
+        return `Antal recensioner: ${(value / 100).toFixed(0)}`;
       }
+      if (label.includes('produkter')) {
+        return `Köpta produkter: ${(value / 100).toFixed(0)}`;
+      }
+      if (label.includes('betalningar')) {
+        return `Totala betalningar: ${Number(value).toFixed(2)} kr`;
+      }
+
+      return `${label}: ${value}`;
+    }
+  }
+}
     }
   };
 
