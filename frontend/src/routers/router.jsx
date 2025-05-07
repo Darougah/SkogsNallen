@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserDMain from "../pages/dashboard/user/dashboard/UserDMain";
 import UserOrders from "../pages/dashboard/user/UserOrders";
 import OrderDetails from "../pages/dashboard/user/orderDetails";
+import UserPayments from "../pages/dashboard/user/UserPayments";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ element:<OrderDetails/>
           //user routes
           { path: "", element: <UserDMain /> },
           { path: "orders", element: <UserOrders/> },
-          { path: "payments", element: <div>Betalningar</div> },
+          { path: "payments", element: <UserPayments/> },
           { path: "profile", element: <div>Profil</div> },
           { path: "reviews", element: <div>Recensioner</div> },
 
