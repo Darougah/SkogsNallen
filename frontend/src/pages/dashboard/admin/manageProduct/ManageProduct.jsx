@@ -80,18 +80,18 @@ const ManageProduct = () => {
                 </thead>
                 <tbody>
                   {products.map((product, index) => (
-                    <tr key={product.id}>
+                    <tr key={index}>
                       <td className="px-6 py-2 text-sm text-gray-800">{startProduct + index}</td>
                       <td className="px-6 py-2 text-sm">{product.name}</td>
                       <td className="px-6 py-2 text-sm">{formatDate(product.createdAt)}</td>
                       <td className="px-6 py-2 text-sm">
-                        <Link to={`/dashboard/update-product/${product.id}`} className="text-blue-600 hover:underline">
+                        <Link to={`/dashboard/update-product/${product._id}`} className="text-blue-600 hover:underline">
                           Redigera
                         </Link>
                       </td>
                       <td className="px-6 py-2 text-sm">
                         <button
-                          onClick={() => handleDeleteProduct(product.id)}
+                          onClick={() => handleDeleteProduct(product._id)}
                           className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
                         >
                           Radera

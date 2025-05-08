@@ -85,7 +85,7 @@ router.get("/:id", async(req,res)=>{
 
 
 // update a product
-router.patch("/update-product/:id", verifyToken,verifyAdmin, async(req,res)=>{
+router.patch("/update-product/:id", verifyToken, verifyAdmin, async (req,res)=>{
   try {
     const productId = req.params.id;
     const updateProduct = await Products.findByIdAndUpdate(productId, {...req.body},{new:true})
