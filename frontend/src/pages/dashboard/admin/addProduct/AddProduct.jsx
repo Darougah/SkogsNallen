@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
 import UploadImage from "./UploadImage";
+import { useAddProductMutation } from "../../../../redux/features/products/productsApi";
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { label: "Välj kategori", value: "" },
@@ -29,6 +31,8 @@ const colors = [
 
 const AddProduct = () => {
   const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -38,70 +42,85 @@ const AddProduct = () => {
   });
 
   const [image, setImage] = useState("");
+  const [addProduct, { isLoading }] = useAddProductMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProduct({
-      ...product,
-      [name]: value,
-    });
+    setProduct({ ...product, [name]: value });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!product.name || !product.category || !product.color || !product.price || !product.description || !image) {
+      alert("Vänligen fyll i alla fält.");
+      return;
+    }
+
+    try {
+      await addProduct({ ...product, image, author: user?.id }).unwrap();
+      alert("Produkt tillagd!");
+      setProduct({ name: "", category: "", color: "", price: "", description: "" });
+      setImage('');
+      navigate("/shop");
+    } catch (error) {
+      console.log("Misslyckades med att lägga in produkten", error);
+      alert("Kunde inte spara produkten.");
+    }
+  };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 max-w-xl">
       <h2 className="text-2xl font-bold mb-6">Lägg till ny produkt</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <TextInput
-          Label="Produktnamn"
+          label="Produktnamn"
           name="name"
           value={product.name}
           onChange={handleChange}
-          type="text"
           placeholder="Produktnamn"
         />
         <SelectInput
-          Label="Kategori "
+          label="Kategori"
           name="category"
           value={product.category}
           onChange={handleChange}
-        options={categories}
+          options={categories}
         />
         <SelectInput
-          Label="Färg"
+          label="Färg"
           name="color"
           value={product.color}
           onChange={handleChange}
-        options={colors}
+          options={colors}
         />
-
-<TextInput
-  Label="Pris (kr)"
-  name="price"
-  value={product.price}
-  onChange={handleChange}
-  type="number"
-  placeholder="Pris"
-/>
-
-<TextInput
-          label="Beskrivning"
-          name="description"
-          value={product.description}
+        <TextInput
+          label="Pris (kr)"
+          name="price"
+          type="number"
+          value={product.price}
           onChange={handleChange}
-          type="text"
-          placeholder="Beskriv kort produkten"
+          placeholder="Pris"
         />
-
-<UploadImage
-name ="image"
-id="image"
-value={e=>e.setImage(e.target.value)}
-placeholder="Upload Image"
-setImage={setImage}
-/>
-
+        <UploadImage name="image" setImage={setImage} />
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Beskrivning</label>
+          <textarea
+            name="description"
+            id="description"
+            className="border p-2 w-full rounded-md bg-gray-100 text-sm"
+            value={product.description}
+            onChange={handleChange}
+            placeholder="Beskriv produkten"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          {isLoading ? "Sparar..." : "Lägg till produkt"}
+        </button>
       </form>
     </div>
   );

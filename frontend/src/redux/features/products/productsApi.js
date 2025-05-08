@@ -34,13 +34,13 @@ const productsApi = createApi({
       query: (id) => `/${id}`,
       providesTags: (result, error, id) => [{ type: "Products", id }],
     }),
-    useAddProduct: builder.mutation({
+    addProduct: builder.mutation({
       query: (newProduct) => ({
         url: "/create-product",
         method: "POST",
         body: newProduct,
-        credentials: "include",
       }),
+      invalidatesTags: ["Products"]
     }),
     useFetchRelatedProduct: builder.query({
       query: (id) => `/related/${id}`,

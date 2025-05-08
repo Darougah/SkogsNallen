@@ -1,4 +1,5 @@
 const express = require("express");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
@@ -20,6 +21,8 @@ app.use(
   })
 );
 
+//image upload
+const uploadImage = require('./src/utils/uploadImage');
 
 //all routes
 const authRoutes = require('./src/users/user.route');
@@ -44,6 +47,15 @@ async function main() {
     res.send("SkogsNallens butik körs...!");
   });
 }
+
+app.post("/uploadImage", async (req, res) => {
+  try {
+    const url = await uploadImage(req.body.image);
+    res.send(url);
+  } catch (err) {
+    res.status(500).send({ message: err.message || "Bilden laddades inte upp" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
