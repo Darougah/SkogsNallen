@@ -695,3 +695,11 @@ nav {
 .nav__icons span a.dropdown-items{
   font-size: 16px;
 }
+
+
+
+
+.add-product-InputCSS {
+  @apply mt-1 block py-2.5 px-4 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm
+}
+
