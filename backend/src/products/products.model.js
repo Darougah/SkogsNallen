@@ -16,6 +16,9 @@ const ProductSchema = new mongoose.Schema ({
     type: Number, default:0
   },
   author: {type: mongoose.Types.ObjectId,ref:"User", required:true }
+},
+{
+  timestamps:true
 })
 
 const Products = mongoose.model("Product", ProductSchema);
