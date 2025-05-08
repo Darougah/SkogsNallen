@@ -32,7 +32,7 @@ const adminDropDownMenus =[
   {label:"Adminpanel", path:"/dashboard/admin"},
   {label:"Hantera Produkter", path:"/dashboard/manage-products"},
   {label:"Alla Beställningar", path:"/dashboard/manage-orders"},
-  {label:"Skapa Ny", path:"/dashboard/add-new-post"},
+  {label:"Skapa Ny Produkt", path:"/dashboard/add-product"},
 ]
 
 //user dropdown
