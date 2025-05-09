@@ -78,7 +78,15 @@ const ManageUser = () => {
                     <tr key={user._id}>
                       <td className="px-6 py-2 text-sm text-gray-800">{startUser + index}</td>
                       <td className="px-6 py-2 text-sm">{user?.email || 'N/A'}</td>
-                      <td className="px-6 py-2 text-sm">{user?.role}</td>
+                     <td className="px-6 py-2 text-sm">
+  <span
+    className={`px-2 py-1 text-xs rounded-full text-white ${
+      user?.role === 'admin' ? 'bg-purple-600' : 'bg-yellow-600'
+    }`}
+  >
+    {user?.role === 'admin' ? 'Admin' : 'Användare'}
+  </span>
+</td>
                       <td className="px-6 py-2 text-sm">
                         <button
                           onClick={() => handleEdit(user)}
