@@ -1,5 +1,3 @@
-
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getBaseURL } from "../../../utils/baseURL";
 
@@ -7,28 +5,28 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${getBaseURL()}/api/products`,
-    credentials: "include",                       
-    prepareHeaders: (headers, { getState }) => {  
-      const token =
-        getState().auth.token || localStorage.getItem("token");
-      if (token) headers.set("authorization", `Bearer ${token}`);
+    credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth?.token || localStorage.getItem("token");
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
       return headers;
     },
   }),
   tagTypes: ["Products"],
-
   endpoints: (builder) => ({
-    /* ---------- Queries ---------- */
     fetchAllProducts: builder.query({
-      query: ({ category, color, minPrice, maxPrice, page = 1, limit = 10 }) => {
+      query: ({ category, color, minPrice, maxPrice, page = 1, limit = 10 } = {}) => {
         const qs = new URLSearchParams({
-          category: category || "",
-          color:    color    || "",
-          minPrice: minPrice || 0,
-          maxPrice: maxPrice || "",
-          page:     page.toString(),
-          limit:    limit.toString(),
+          ...(category && { category }),
+          ...(color && { color }),
+          ...(minPrice !== undefined && { minPrice }),
+          ...(maxPrice !== undefined && { maxPrice }),
+          page: page.toString(),
+          limit: limit.toString(),
         }).toString();
+
         return `/?${qs}`;
       },
       providesTags: ["Products"],
@@ -36,10 +34,10 @@ export const productsApi = createApi({
 
     fetchProductById: builder.query({
       query: (id) => `/${id}`,
-      providesTags: (r, e, id) => [{ type: "Products", id }],
+      providesTags: (result, error, id) => [{ type: "Products", id }],
     }),
 
-    useFetchRelatedProduct: builder.query({
+    fetchRelatedProduct: builder.query({
       query: (id) => `/related/${id}`,
     }),
 
@@ -58,7 +56,7 @@ export const productsApi = createApi({
         method: "PATCH",
         body: rest,
       }),
-      invalidatesTags: (r, e, { id }) => ["Products", { type: "Products", id }],
+      invalidatesTags: (result, error, { id }) => ["Products", { type: "Products", id }],
     }),
 
     deleteProduct: builder.mutation({
@@ -66,7 +64,7 @@ export const productsApi = createApi({
         url: `/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (r, e, id) => ["Products", { type: "Products", id }],
+      invalidatesTags: (result, error, id) => ["Products", { type: "Products", id }],
     }),
   }),
 });
@@ -74,9 +72,10 @@ export const productsApi = createApi({
 export const {
   useFetchAllProductsQuery,
   useFetchProductByIdQuery,
+  useFetchRelatedProductQuery,
   useAddProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
-  useFetchRelatedProductQuery,
 } = productsApi;
+
 export default productsApi;
