@@ -88,15 +88,15 @@ router.delete('/users/:id', async(req,res)=>{
 
 //get all users
 
-router.get('/users', async(req,res)=>{
+router.get('/users', async (req, res) => {
   try {
-    const users = await User.find({}, 'id email role').sort({createdAt: -1});
-    res.status(200).send(users)
+    const users = await User.find({}, 'id email role').sort({ createdAt: -1 });
+    res.status(200).send({ users }); 
   } catch (error) {
     console.log("Error fetching users");
-    res.status(500).send({message:"Error fetching user"})
+    res.status(500).send({ message: "Error fetching users" });
   }
-})
+});
 
 
 //update user role
