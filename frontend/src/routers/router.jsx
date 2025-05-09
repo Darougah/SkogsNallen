@@ -21,6 +21,7 @@ import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 import ManageProduct from "../pages/dashboard/admin/manageProduct/ManageProduct";
 import UpdateProduct from "../pages/dashboard/admin/manageProduct/UpdateProduct";
 import ManageUser from "../pages/dashboard/admin/users/ManageUser";
+import ManageOrders from "../pages/dashboard/admin/manageOrders/ManageOrders";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,7 @@ element:<OrderDetails/>
           { path: "manage-products", element: <PrivateRoute role="admin"><ManageProduct/></PrivateRoute> },
           { path: "update-product/:id", element: <PrivateRoute role="admin"><UpdateProduct/></PrivateRoute> },
           { path: "users", element: <PrivateRoute role="admin"><ManageUser/></PrivateRoute> },
-          { path: "manage-orders", element: <PrivateRoute role="admin"><div>Hantera Beställningar</div></PrivateRoute> },
+          { path: "manage-orders", element: <PrivateRoute role="admin"><ManageOrders/></PrivateRoute> },
           
         ],
       },

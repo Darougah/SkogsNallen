@@ -171,7 +171,7 @@ router.patch('/update-order-status/:id', async (req, res) => {
 //Delete order
 router.delete('/delete-order/:id', async (req, res) => {
   try {
-    
+      const { id } = req.params;
     const deletedOrder = await Order.findByIdAndDelete(id);
     if (!deletedOrder) {
       return res.status(404).json({ message: "Order not found" });
