@@ -57,6 +57,16 @@ app.post("/uploadImage", async (req, res) => {
   }
 });
 
+const path = require("path");
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "build")));
+
+// SPA fallback: serve index.html for any unknown routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
