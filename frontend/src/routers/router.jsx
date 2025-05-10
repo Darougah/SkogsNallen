@@ -22,6 +22,10 @@ import ManageProduct from "../pages/dashboard/admin/manageProduct/ManageProduct"
 import UpdateProduct from "../pages/dashboard/admin/manageProduct/UpdateProduct";
 import ManageUser from "../pages/dashboard/admin/users/ManageUser";
 import ManageOrders from "../pages/dashboard/admin/manageOrders/ManageOrders";
+import AboutPage from "../pages/static/AboutPage";
+import CareersPage from "../pages/static/CareersPage";
+import TermsPage from "../pages/static/TermsPage";
+import HelpPage from "../pages/static/HelpPage";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +37,10 @@ const router = createBrowserRouter([
       { path: "/search", element: <Search /> },
       { path: "/shop", element: <ShopPage /> },
       { path: "/shop/:id", element: <SingleProduct /> },
+          { path: "/pages/about", element: <AboutPage /> },
+    { path: "/pages/careers", element: <CareersPage /> },
+    { path: "/pages/terms", element: <TermsPage /> },
+    { path: "/pages/help", element: <HelpPage /> },
       {
         path: "/success",
         element: <PaymentSuccess />,
@@ -51,6 +59,7 @@ element:<OrderDetails/>
           { path: "payments", element: <UserPayments/> },
           { path: "profile", element: <UserProfile/> },
           { path: "reviews", element: <UserReviews/> },
+          
 
           //admin routes
           { path: "admin", element: <PrivateRoute role="admin"><AdminDMain/></PrivateRoute> },
