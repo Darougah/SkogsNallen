@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dealsImg from "../../assets/nalle.png";
+import { Link } from "react-router-dom";
 
 const DealsSection = () => {
   const getOrCreateTargetDate = () => {
@@ -74,6 +75,12 @@ const DealsSection = () => {
             <p>Sek</p>
           </div>
         </div>
+
+        <div className="mt-6">
+  <Link to="/shop" className="btn">
+    Utforska Butiken
+  </Link>
+</div>
       </div>
     </section>
   );
