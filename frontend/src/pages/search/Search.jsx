@@ -1,71 +1,75 @@
-import React, { useState } from 'react';
-import productsData from "../../data/products.json";
+import React, { useState, useEffect } from 'react';
 import ProductCards from '../shop/ProductCards';
+import { useFetchAllProductsQuery } from '../../redux/features/products/productsApi';
 
 const Search = () => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-    const handleInputChange = (e) => {
-        const query = e.target.value.toLowerCase();
-        setSearchQuery(query);
+  const {
+    data: { products = [] } = {},
+    isLoading,
+    isError,
+    error,
+  } = useFetchAllProductsQuery({
+    category: '',
+    color: '',
+    minPrice: '',
+    maxPrice: '',
+    page: 1,
+    limit: 1000, 
+  });
 
-        if (query.trim() === '') {
-            setFilteredProducts(productsData); 
-        } else {
-            const filtered = productsData.filter(product => 
-                product.name.toLowerCase().includes(query) 
-            );
-            setFilteredProducts(filtered);
-        }
-    };
+  useEffect(() => {
+    const query = searchQuery.toLowerCase();
 
-  
-    const handleSearch = () => {
-        if (searchQuery.trim() === '') {
-            setFilteredProducts(productsData); 
-        } else {
-            const filtered = productsData.filter(product => 
-                product.name.toLowerCase().includes(searchQuery)
-            );
-            setFilteredProducts(filtered);
-        }
-    };
+    if (!query.trim()) {
+      setFilteredProducts(products);
+      return;
+    }
 
-    return (
-        <>
-     
-            <section className='section__container bg-[#d4edda]'>
-                <h2 className='section__header capitalize'>Sök Leksaker</h2>
-                <p className='section__subheader'>Upptäck vårt breda utbud av leksaker för alla åldrar och intressen.</p>
-            </section>
-
-            <section className='section__container'>
-                <div className="search-container">
-                    <input 
-                        type="text" 
-                        value={searchQuery}
-                        onChange={handleInputChange}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                        className="search-bar"
-                        placeholder="Sök efter leksaker..." 
-                    />
-
-                    <button 
-                        onClick={handleSearch}
-                        className="search-button">
-                        Sök
-                    </button>
-                </div>
-
-                {filteredProducts.length > 0 ? (
-                    <ProductCards products={filteredProducts}/>
-                ) : (
-                    <p className="text-center text-gray-500">Inga produkter matchade din sökning.</p>
-                )}
-            </section>
-        </>
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query)
     );
+
+    setFilteredProducts(filtered);
+  }, [searchQuery, products]);
+
+  return (
+    <>
+      <section className='section__container bg-[#d4edda]'>
+        <h2 className='section__header capitalize'>Sök Leksaker</h2>
+        <p className='section__subheader'>
+          Upptäck vårt breda utbud av leksaker för alla åldrar och intressen.
+        </p>
+      </section>
+
+      <section className='section__container'>
+        <div className="search-container">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-bar"
+            placeholder="Sök efter leksaker eller kategori..."
+          />
+        </div>
+
+        {isLoading ? (
+          <p className="text-center text-gray-500">Laddar produkter...</p>
+        ) : isError ? (
+          <p className="text-center text-red-500">
+            Fel vid hämtning av produkter: {error?.message}
+          </p>
+        ) : filteredProducts.length > 0 ? (
+          <ProductCards products={filteredProducts} />
+        ) : (
+          <p className="text-center text-gray-500">Inga produkter matchade din sökning.</p>
+        )}
+      </section>
+    </>
+  );
 };
 
 export default Search;
