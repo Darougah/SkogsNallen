@@ -1,7 +1,7 @@
 const express = require("express");
 const Products = require("../products/products.model");
 const Reviews = require("./reviews.model");
-const { UserInfo } = require("firebase-admin/auth");
+// const { UserInfo } = require("firebase-admin/auth");
 const router = express.Router();
 
 // POSTA en ny recension
