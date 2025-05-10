@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import {
   useFetchProductByIdQuery,
@@ -45,6 +44,7 @@ const UpdateProduct = () => {
     description: "",
     image: null,
     price: 0,
+    oldPrice: "",
   });
 
   const [newImage, setNewImage] = useState(null);
@@ -68,6 +68,7 @@ const UpdateProduct = () => {
         description: p.description || "",
         image: p.image || null,
         price: p.price || 0,
+        oldPrice: p.oldPrice || "",
       });
     }
   }, [productData]);
@@ -135,6 +136,14 @@ const UpdateProduct = () => {
           value={product.price}
           onChange={handleChange}
           placeholder="Pris"
+        />
+        <TextInput
+          label="Ordinarie pris (kr)"
+          name="oldPrice"
+          type="number"
+          value={product.oldPrice}
+          onChange={handleChange}
+          placeholder="Tidigare pris (valfritt)"
         />
         <UploadImage
           name="image"

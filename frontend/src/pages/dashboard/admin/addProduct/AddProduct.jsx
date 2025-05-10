@@ -38,6 +38,7 @@ const AddProduct = () => {
     category: "",
     color: "",
     price: "",
+    oldPrice: "",
     description: "",
   });
 
@@ -60,7 +61,7 @@ const AddProduct = () => {
     try {
       await addProduct({ ...product, image, author: user?.id }).unwrap();
       alert("Produkt tillagd!");
-      setProduct({ name: "", category: "", color: "", price: "", description: "" });
+      setProduct({ name: "", category: "", color: "", price: "", oldPrice: "", description: "" });
       setImage('');
       navigate("/shop");
     } catch (error) {
@@ -73,52 +74,17 @@ const AddProduct = () => {
     <div className="container mx-auto mt-8 max-w-xl">
       <h2 className="text-2xl font-bold mb-6">Lägg till ny produkt</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <TextInput
-          label="Produktnamn"
-          name="name"
-          value={product.name}
-          onChange={handleChange}
-          placeholder="Produktnamn"
-        />
-        <SelectInput
-          label="Kategori"
-          name="category"
-          value={product.category}
-          onChange={handleChange}
-          options={categories}
-        />
-        <SelectInput
-          label="Färg"
-          name="color"
-          value={product.color}
-          onChange={handleChange}
-          options={colors}
-        />
-        <TextInput
-          label="Pris (kr)"
-          name="price"
-          type="number"
-          value={product.price}
-          onChange={handleChange}
-          placeholder="Pris"
-        />
+        <TextInput label="Produktnamn" name="name" value={product.name} onChange={handleChange} placeholder="Produktnamn" />
+        <SelectInput label="Kategori" name="category" value={product.category} onChange={handleChange} options={categories} />
+        <SelectInput label="Färg" name="color" value={product.color} onChange={handleChange} options={colors} />
+        <TextInput label="Pris (kr)" name="price" type="number" value={product.price} onChange={handleChange} placeholder="Pris" />
+        <TextInput label="Ordinarie pris (kr)" name="oldPrice" type="number" value={product.oldPrice} onChange={handleChange} placeholder="Tidigare pris (valfritt)" />
         <UploadImage name="image" setImage={setImage} />
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Beskrivning</label>
-          <textarea
-            name="description"
-            id="description"
-            className="border p-2 w-full rounded-md bg-gray-100 text-sm"
-            value={product.description}
-            onChange={handleChange}
-            placeholder="Beskriv produkten"
-          />
+          <textarea name="description" id="description" className="border p-2 w-full rounded-md bg-gray-100 text-sm" value={product.description} onChange={handleChange} placeholder="Beskriv produkten" />
         </div>
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-        >
+        <button type="submit" disabled={isLoading} className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
           {isLoading ? "Sparar..." : "Lägg till produkt"}
         </button>
       </form>
