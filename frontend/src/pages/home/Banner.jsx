@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import bannerImg from "../../assets/banner.PNG"
+import bannerImg from "../../assets/banner1.png"
 
 const Banner = () => {
   return (
