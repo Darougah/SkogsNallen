@@ -24,7 +24,7 @@ SkogsNallen is a modern, **responsive** online store where families can discover
 
 ## 🚀 Key Features
 
-<details>
+<details open>
   <summary><strong>Customer experience</strong></summary>
 
 * Browse toys by **category**
@@ -35,7 +35,7 @@ SkogsNallen is a modern, **responsive** online store where families can discover
 
 </details>
 
-<details>
+<details open>
   <summary><strong>Admin capabilities</strong></summary>
 
 * CRUD products with image upload
@@ -75,7 +75,7 @@ $ cd ../frontend && npm install
 
 ### 2  Environment Variables
 
-<details>
+<details open>
   <summary><code>backend/.env</code></summary>
 
 ```env
@@ -90,7 +90,7 @@ CLOUDINARY_API_SECRET=xxx
 
 </details>
 
-<details>
+<details open>
   <summary><code>frontend/.env</code></summary>
 
 ```env
