@@ -18,7 +18,7 @@ SkogsNallen is a modern, **responsive** online store where families can discover
 | Layer          | URL                                                                          |
 | -------------- | ---------------------------------------------------------------------------- |
 | 🌐 Frontend    | [https://skogsnallen-1.onrender.com](https://skogsnallen-1.onrender.com)     |
-| 🖥 Backend API | [https://skogsnallen.onrender.com/api](https://skogsnallen.onrender.com/api) |
+| 🖥 Backend API | [https://skogsnallen.onrender.com/api](https://skogsnallen.onrender.com) |
 
 ---
 
