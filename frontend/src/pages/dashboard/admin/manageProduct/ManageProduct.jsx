@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import { useDeleteProductMutation, useFetchAllProductsQuery } from '../../../../redux/features/products/productsApi';
 import { Link } from 'react-router-dom';
@@ -14,7 +11,7 @@ const ManageProduct = () => {
   const [productsPerPage] = useState(12);
 
   const {
-    data: { products = [], totalPages, totalProducts } = {},
+    data: { products = [], totalPages = 1, totalProducts = 0 } = {},
     isLoading,
     isError,
     error,
@@ -42,101 +39,119 @@ const ManageProduct = () => {
   const handleDeleteProduct = async (id) => {
     try {
       await deleteProduct({ id }).unwrap();
-      alert("Produkten raderades");
+      alert('Produkten raderades');
       await refetch();
     } catch (error) {
-      console.error("Fel vid radering av produkt", error);
-      alert("Kunde inte radera produkten");
+      console.error('Fel vid radering av produkt', error);
+      alert('Kunde inte radera produkten');
     }
   };
 
   return (
-    <>
-      {isLoading && <div>Loading...</div>}
-      {isError && <div>Error loading products: {error?.message}</div>}
+    <section className="py-6">
+      {isLoading && <div className="text-center py-4">Laddar produkter...</div>}
+      {isError && <div className="text-center text-red-500 py-4">Fel: {error?.message}</div>}
 
-      <section className="py-1 bg-blueGray-50">
-        <div className="w-full mb-12 xl:mb-0 px-4 mx-auto">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-            <div className="rounded-t mb-0 px-4 py-3 border-0">
-              <div className="flex flex-wrap items-center justify-between">
-                <h3 className="font-semibold text-base text-blueGray-700">Alla produkter</h3>
-              </div>
-              <h3 className="my-4 text-sm">
-                Visar {startProduct} till {endProduct} av {totalProducts} produkter
-              </h3>
-            </div>
-
-            <div className="block w-full overflow-x-auto">
-              <table className="items-center bg-transparent w-full border-collapse">
-                <thead>
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700">Nr</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700">Produktnamn</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700">Publiceringsdatum</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700">Redigera</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700">Radera</th>
+      <div className="w-full px-4 mx-auto">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="px-4 py-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            <h3 className="font-semibold text-lg text-gray-800">Alla produkter</h3>
+            <p className="text-sm mt-2 sm:mt-0 text-gray-600">
+              Visar {startProduct} till {endProduct} av {totalProducts} produkter
+            </p>
+          </div>
+          <div className="hidden sm:block overflow-x-auto">
+            <table className="min-w-full table-auto text-sm">
+              <thead className="bg-gray-50 text-gray-700 font-semibold">
+                <tr>
+                  <th className="px-6 py-3 text-left">Nr</th>
+                  <th className="px-6 py-3 text-left">Produktnamn</th>
+                  <th className="px-6 py-3 text-left">Publiceringsdatum</th>
+                  <th className="px-6 py-3 text-left">Redigera</th>
+                  <th className="px-6 py-3 text-left">Radera</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product, index) => (
+                  <tr key={product._id} className="border-t hover:bg-gray-50">
+                    <td className="px-6 py-3">{startProduct + index}</td>
+                    <td className="px-6 py-3 truncate max-w-[200px]" title={product.name}>{product.name}</td>
+                    <td className="px-6 py-3">{formatDate(product.createdAt)}</td>
+                    <td className="px-6 py-3">
+                      <Link to={`/dashboard/update-product/${product._id}`} className="text-blue-600 hover:underline">
+                        Redigera
+                      </Link>
+                    </td>
+                    <td className="px-6 py-3">
+                      <button
+                        onClick={() => handleDeleteProduct(product._id)}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
+                      >
+                        Radera
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {products.map((product, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-2 text-sm text-gray-800">{startProduct + index}</td>
-                      <td className="px-6 py-2 text-sm">{product.name}</td>
-                      <td className="px-6 py-2 text-sm">{formatDate(product.createdAt)}</td>
-                      <td className="px-6 py-2 text-sm">
-                        <Link to={`/dashboard/update-product/${product._id}`} className="text-blue-600 hover:underline">
-                          Redigera
-                        </Link>
-                      </td>
-                      <td className="px-6 py-2 text-sm">
-                        <button
-                          onClick={() => handleDeleteProduct(product._id)}
-                          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                        >
-                          Radera
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="block sm:hidden p-4 space-y-4">
+            {products.map((product, index) => (
+              <div key={product._id} className="border rounded-lg p-4 shadow-sm">
+                <p className="text-sm"><span className="font-semibold">Nr:</span> {startProduct + index}</p>
+                <p className="text-sm"><span className="font-semibold">Namn:</span> <span title={product.name} className="block truncate">{product.name}</span></p>
+                <p className="text-sm"><span className="font-semibold">Publicerad:</span> {formatDate(product.createdAt)}</p>
+                <div className="flex gap-4 mt-2">
+                  <Link
+                    to={`/dashboard/update-product/${product._id}`}
+                    className="text-blue-600 font-medium hover:underline text-sm"
+                  >
+                    Redigera
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteProduct(product._id)}
+                    className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
+                  >
+                    Radera
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Pagination */}
-        <div className="mt-6 flex items-center justify-center">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2 px-4">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:opacity-50"
+        >
+          Föregående
+        </button>
+        {[...Array(totalPages)].map((_, index) => (
           <button
-            disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
-            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2"
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 rounded-md ${
+              currentPage === index + 1
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
           >
-            Föregående
+            {index + 1}
           </button>
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={`px-4 py-2 rounded-md mx-1 ${
-                currentPage === index + 1
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-300 text-gray-700'
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
-            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2"
-          >
-            Nästa
-          </button>
-        </div>
-      </section>
-    </>
+        ))}
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md disabled:opacity-50"
+        >
+          Nästa
+        </button>
+      </div>
+    </section>
   );
 };
 

@@ -7,9 +7,7 @@ import AdminDashboard from './AdminDashboard';
 const DashboardLayout = () => {
   const { user } = useSelector((state) => state.auth);
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+  if (!user) return <Navigate to="/login" replace />;
 
   const renderDashboard = () => {
     switch (user?.role) {
@@ -23,11 +21,11 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className='container mx-auto flex flex-col md:flex-row gap-4 items-start justify-start'>
-      <aside className='lg:w-1/5 sm:w-2/5 w-full border'>
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-start border">
+      <aside className="w-full md:w-1/4 lg:w-1/5 border-r bg-white min-h-screen">
         {renderDashboard()}
       </aside>
-      <main className='p-8 bg-white w-full border mt-5'>
+      <main className="w-full md:w-3/4 lg:w-4/5 p-8 bg-white">
         <Outlet />
       </main>
     </div>

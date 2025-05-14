@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEditProfileMutation } from '../../../redux/features/auth/authApi';
@@ -51,7 +50,7 @@ const UserProfile = () => {
 
     try {
       const response = await editProfile(updatedUser).unwrap();
-      dispatch(setUser(response.user))
+      dispatch(setUser(response.user));
       localStorage.setItem('user', JSON.stringify(response.user));
       alert('Profile updated successfully');
       setIsModalOpen(false);
@@ -62,38 +61,38 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <div className="flex items-center mb-4">
-        <div className="w-20 h-20 shrink-0">
-  <img
-    src={formData?.profileImage || avatarImg}
-    alt="avatar"
-    className="w-full h-full rounded-full object-cover border shadow"
-  />
-</div>
-          <div className="ml-6">
-            <h3 className="text-2xl font-semibold">Användarnamn: {formData.username || 'N/A'}</h3>
+    <div className="container mx-auto p-4 md:p-6">
+      <div className="bg-white shadow-md rounded-lg p-4 md:p-6">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+          <div className="w-24 h-24 shrink-0">
+            <img
+              src={formData?.profileImage || avatarImg}
+              alt="avatar"
+              className="w-full h-full rounded-full object-cover border shadow"
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-xl md:text-2xl font-semibold">Användarnamn: {formData.username || 'N/A'}</h3>
             <p className="text-gray-700">Bio: {formData.bio || 'N/A'}</p>
             <p className="text-gray-700">Yrke: {formData.profession || 'N/A'}</p>
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="ml-auto text-blue-500 hover:text-blue-700"
+            className="self-start md:self-center text-blue-500 hover:text-blue-700"
           >
-            <i className="ri-edit-2-fill"></i>
+            <i className="ri-edit-2-fill text-xl"></i>
           </button>
         </div>
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg md:w-96 max-w-xl mx-auto relative">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 px-4">
+          <div className="bg-white p-6 rounded-lg w-full max-w-md relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
             >
-              <i className="ri-close-line size-8 bg-black rounded-full text-white p-1"></i>
+              <i className="ri-close-line text-2xl bg-black rounded-full text-white p-1"></i>
             </button>
             <h2 className="text-2xl font-bold mb-4">Redigera profil</h2>
             <form onSubmit={handleSubmit}>
@@ -147,7 +146,7 @@ const UserProfile = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`mt-4 w-full bg-blue-500 text-white py-2 px-2 rounded-md ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-md ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600 transition'}`}
               >
                 {isLoading ? 'Sparar...' : 'Spara ändringar'}
               </button>
