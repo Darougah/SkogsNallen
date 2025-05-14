@@ -66,10 +66,10 @@ const handleLogout = async () => {
             <Link to="/Shop">Butik</Link>
           </li>
           <li className='link'>
-            <Link to="/Pages">Sidor</Link>
+            <Link to="/pages/about">Om oss</Link>
           </li>
           <li className='link'>
-            <Link to="/contact">Kontakt</Link>
+            <Link to="/pages/help">Kontakt</Link>
           </li>
       </ul>
       {/* Logo */}
