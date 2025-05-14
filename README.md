@@ -130,7 +130,7 @@ Navigate to [http://localhost:5173](http://localhost:5173) and start playing!
 
 </details>
 
-<details>
+<details open>
   <summary><strong>🛒 Products</strong></summary>
 
 | Method | Endpoint                    | Description                |
@@ -144,7 +144,7 @@ Navigate to [http://localhost:5173](http://localhost:5173) and start playing!
 
 </details>
 
-<details>
+<details open>
   <summary><strong>⭐ Reviews</strong></summary>
 
 | Method | Endpoint       | Description     |
@@ -153,7 +153,7 @@ Navigate to [http://localhost:5173](http://localhost:5173) and start playing!
 
 </details>
 
-<details>
+<details open>
   <summary><strong>📦 Orders</strong></summary>
 
 | Method | Endpoint                              | Description                   |
