@@ -1,176 +1,189 @@
-# 🧸 SkogsNallen – E‑commerce Toy Store
-
-SkogsNallen is a full‑stack e‑commerce web application. The platform lets visitors browse and search toys, register and log in, place orders and pay securely with Stripe. Admins get a private dashboard for managing products, orders and users.
-
-> **Project origin**: Final thesis at **Nackademin**. Goal → simulate a real‑world toy‑shop experience using modern, open‑source tools.
+<h1 align="center">🧸 SkogsNallen – E‑commerce Toy Store</h1>
+<p align="center">
+  <em>Full‑stack MERN toy‑shop built for my final thesis at Nackademin</em><br/>
+  <a href="https://skogsnallen-1.onrender.com"><strong>Live Frontend  →</strong></a>
+  ·
+  <a href="https://skogsnallen.onrender.com/api"><strong>Live REST API →</strong></a>
+  <br/><br/>
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Darougah/SkogsNallen?logo=github">
+  <img alt="MIT License"        src="https://img.shields.io/badge/License-MIT-green.svg">
+  <img alt="PRs welcome"        src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
+</p>
 
 ---
 
-## 🔗 Live Demo
+## ✨ What is SkogsNallen?
+
+SkogsNallen is a modern, **responsive** online store where families can discover quality toys, add them to a cart and pay securely with Stripe. Admins get a private dashboard for managing products, orders and users.
+
+> **Goal**: replicate real‑world e‑commerce workflow using only open‑source tools – React, Redux Toolkit, Node, Express and MongoDB.
+
+---
+
+## 🔗 Live Demo
 
 | Layer          | URL                                                                          |
 | -------------- | ---------------------------------------------------------------------------- |
-| 🌐 Frontend    | [https://skogsnallen-1.onrender.com](https://skogsnallen-1.onrender.com)     |
-| 🖥 Backend API | [https://skogsnallen.onrender.com/api](https://skogsnallen.onrender.com/) |
+| 🌐 Frontend    | [https://skogsnallen-1.onrender.com](https://skogsnallen-1.onrender.com)     |
+| 🖥 Backend API | [https://skogsnallen.onrender.com/api](https://skogsnallen.onrender.com/api) |
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-### 🛍  User features
+<details>
+  <summary><strong>Customer experience</strong></summary>
 
-* Browse toys by category
-* Filter by price, colour and keywords
-* Add items to cart
-* Secure register & login (JWT)
-* See order history and live status
-* Pay via Stripe Checkout
+* Browse toys by **category**
+* Filter by **price, colour** and **keyword**
+* JWT‑powered **signup / login**
+* Live **order history & status**
+* **Stripe Checkout** with web‑hook confirmation
 
-### 🛠  Admin features
+</details>
 
-* Create, update, delete products
-* View every order and change status
-* Manage users & roles
-* Dashboard stats (total earnings, total users, etc.)
+<details>
+  <summary><strong>Admin capabilities</strong></summary>
+
+* CRUD products with image upload
+* Update & delete any order
+* Promote / demote users
+* Real‑time dashboard totals (revenue, orders, users)
+
+</details>
 
 ---
 
-## 🧰 Tech Stack
+## 🧰 Tech Stack
 
-| Layer         | Tools                                                                            |
+| Tier          | Tools                                                                            |
 | ------------- | -------------------------------------------------------------------------------- |
-| **Frontend**  | React 18 • Redux Toolkit + RTK Query • React Router v6 • Tailwind CSS            |
-| **Backend**   | Node.js 20 • Express 4 • MongoDB Atlas + Mongoose • Stripe API • JSON Web Tokens |
-| **Utilities** | Multer & Base64 for image uploads                                                |
+| **Frontend**  | React 18 · Redux Toolkit & RTK Query · React Router · Tailwind CSS            |
+| **Backend**   | Node.js 20 · Express · MongoDB Atlas + Mongoose · Stripe API · JSON Web Tokens |
+| **Utilities** | Multer + Cloudinary for image uploads                                            |
 
 ---
 
-## 📦 Installation
+## 📦 Getting Started
 
-### 1  Clone the repository
-
-```bash
-git clone https://github.com/Darougah/SkogsNallen.git
-cd SkogsNallen
-```
-
-### 2  Install dependencies
+### 1  Clone & Install
 
 ```bash
-# Backend
-a cd backend
-npm install
+# Clone
+$ git clone https://github.com/Darougah/SkogsNallen.git
+$ cd SkogsNallen
 
-# Frontend
-cd ../frontend
-npm install
+# Backend deps
+$ cd backend && npm install
+
+# Frontend deps
+$ cd ../frontend && npm install
 ```
 
-### 3  Configure environment variables ()
+### 2  Environment Variables
 
-Create a file called `.env` inside `backend/` and add:
+<details>
+  <summary><code>backend/.env</code></summary>
 
 ```env
-  DB_URL=""
-  JWT_SECRET_KEY=""
-  STRIPE_SECRET_KEY = ""
-  CLOUDINARY_CLOUD_NAME= ''
-  CLOUDINARY_API_KEY= ''
-  CLOUDINARY_API_SECRET= ''
+PORT=5000
+DB_URL=your‑mongodb‑connection‑url
+JWT_SECRET=your‑jwt‑secret
+STRIPE_SECRET_KEY=your‑stripe‑secret
+CLOUDINARY_CLOUD_NAME=your‑cloud‑name
+CLOUDINARY_API_KEY=xxx
+CLOUDINARY_API_SECRET=xxx
 ```
 
-Create a file called `.env` inside `frontend/` and add:
+</details>
+
+<details>
+  <summary><code>frontend/.env</code></summary>
+
 ```env
-VITE_STRIPE_PK=
+VITE_STRIPE_PK=your‑stripe‑publishable‑key
 ```
----
 
-## 🧪 Usage – Local development
+</details>
+
+### 3  Run locally
 
 ```bash
 # Start backend
-a cd backend
-npm run dev
+$ cd backend && npm run dev
 
-# Start frontend
-cd ../frontend
-npm run dev
+# Start frontend (new terminal)
+$ cd frontend && npm run dev
 ```
 
-Visit **[http://localhost:5173](http://localhost:5173)** in your browser.
+Navigate to [http://localhost:5173](http://localhost:5173) and start playing!
 
 ---
 
-## 🧾 API Reference
+## 🧾 API Reference
 
-### 👤 Users / Auth
+<details open>
+  <summary><strong>👤 Users / Auth</strong></summary>
 
-| Method     | Endpoint                 | Description                         |
-| ---------- | ------------------------ | ----------------------------------- |
-| **POST**   | `/api/auth/register`     | Register new user                   |
-| **POST**   | `/api/auth/login`        | Log in user                         |
-| **POST**   | `/api/auth/logout`       | Log out current user                |
-| **GET**    | `/api/auth/users`        | Get all users <sub>(admin)</sub>    |
-| **DELETE** | `/api/auth/users/:id`    | Delete a user <sub>(admin)</sub>    |
-| **PUT**    | `/api/auth/users/:id`    | Update user role <sub>(admin)</sub> |
-| **PATCH**  | `/api/auth/edit-profile` | Update own profile                  |
+| Method | Endpoint                 | Description                |
+| ------ | ------------------------ | -------------------------- |
+| POST   | `/api/auth/register`     | Register new user          |
+| POST   | `/api/auth/login`        | Log in user                |
+| POST   | `/api/auth/logout`       | Log out current user       |
+| GET    | `/api/auth/users`        | Get all users *(admin)*    |
+| DELETE | `/api/auth/users/:id`    | Delete a user *(admin)*    |
+| PUT    | `/api/auth/users/:id`    | Update user role *(admin)* |
+| PATCH  | `/api/auth/edit-profile` | Update own profile         |
 
-### 🛒 Products
+</details>
 
-| Method     | Endpoint                    | Description                         |
-| ---------- | --------------------------- | ----------------------------------- |
-| **POST**   | `/api/products`             | Create a product <sub>(admin)</sub> |
-| **GET**    | `/api/products`             | Fetch all products                  |
-| **GET**    | `/api/products/:id`         | Fetch single product                |
-| **PUT**    | `/api/products/:id`         | Update product <sub>(admin)</sub>   |
-| **DELETE** | `/api/products/:id`         | Delete product <sub>(admin)</sub>   |
-| **GET**    | `/api/products/related/:id` | Related products                    |
+<details>
+  <summary><strong>🛒 Products</strong></summary>
 
-### ⭐ Reviews
+| Method | Endpoint                    | Description                |
+| ------ | --------------------------- | -------------------------- |
+| POST   | `/api/products`             | Create a product *(admin)* |
+| GET    | `/api/products`             | Fetch all products         |
+| GET    | `/api/products/:id`         | Fetch single product       |
+| PUT    | `/api/products/:id`         | Update product *(admin)*   |
+| DELETE | `/api/products/:id`         | Delete product *(admin)*   |
+| GET    | `/api/products/related/:id` | Related products           |
 
-| Method   | Endpoint       | Description     |
-| -------- | -------------- | --------------- |
-| **POST** | `/api/reviews` | Submit a review |
+</details>
 
-### 📦 Orders
+<details>
+  <summary><strong>⭐ Reviews</strong></summary>
 
-| Method    | Endpoint                              | Description                            |
-| --------- | ------------------------------------- | -------------------------------------- |
-| **POST**  | `/api/orders/create-checkout-session` | Start Stripe checkout                  |
-| **GET**   | `/api/orders`                         | Get all orders <sub>(admin)</sub>      |
-| **PATCH** | `/api/orders/update-order-status/:id` | Update order status <sub>(admin)</sub> |
+| Method | Endpoint       | Description     |
+| ------ | -------------- | --------------- |
+| POST   | `/api/reviews` | Submit a review |
+
+</details>
+
+<details>
+  <summary><strong>📦 Orders</strong></summary>
+
+| Method | Endpoint                              | Description                   |
+| ------ | ------------------------------------- | ----------------------------- |
+| POST   | `/api/orders/create-checkout-session` | Start Stripe checkout         |
+| GET    | `/api/orders`                         | Get all orders *(admin)*      |
+| PATCH  | `/api/orders/update-order-status/:id` | Update order status *(admin)* |
+
+</details>
+
 
 ---
 
-\| POST | /api/auth/register | Register new user |
-\| POST | /api/auth/login | Log in user |
-\| GET  | /api/products | Get all products |
-\| GET  | /api/categories | Get all categories |
-\| POST | /api/orders/create-checkout-session | Start Stripe checkout |
-\| PATCH | /api/orders/update-order-status/\:id | Update order status |
+## 🖼 Screenshots
 
-
----
-
-## 🖼 Screenshots
-
-| Home page                      | Admin dashboard                  | Product page                         |
+| Home                           | Admin                            | Product                              |
 | ------------------------------ | -------------------------------- | ------------------------------------ |
 | ![Home](docs/screens/home.png) | ![Admin](docs/screens/admin.png) | ![Product](docs/screens/product.png) |
 
-
-
 ---
 
-## 👨‍💻 Author
-
-Developed by Daniel Darougah
 
 
+## 👨‍💻 Author
 
-
-
-
-
-
-
+Made with ❤️ by **Daniel Darougah** – 2025
