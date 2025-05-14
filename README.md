@@ -5,9 +5,6 @@
   ·
   <a href="https://skogsnallen.onrender.com/api"><strong>Live REST API →</strong></a>
   <br/><br/>
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Darougah/SkogsNallen?logo=github">
-  <img alt="MIT License"        src="https://img.shields.io/badge/License-MIT-green.svg">
-  <img alt="PRs welcome"        src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
 </p>
 
 ---
@@ -16,7 +13,6 @@
 
 SkogsNallen is a modern, **responsive** online store where families can discover quality toys, add them to a cart and pay securely with Stripe. Admins get a private dashboard for managing products, orders and users.
 
-> **Goal**: replicate real‑world e‑commerce workflow using only open‑source tools – React, Redux Toolkit, Node, Express and MongoDB.
 
 ---
 
