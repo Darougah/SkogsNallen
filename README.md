@@ -1,9 +1,6 @@
 <h1 align="center">🧸 SkogsNallen – E‑commerce Toy Store</h1>
 <p align="center">
-  <em>Full‑stack MERN toy‑shop built for my final thesis at Nackademin</em><br/>
   <a href="https://skogsnallen-1.onrender.com"><strong>Live Frontend  →</strong></a>
-  ·
-  <a href="https://skogsnallen.onrender.com/api"><strong>Live REST API →</strong></a>
   <br/><br/>
 </p>
 
