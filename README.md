@@ -31,7 +31,7 @@ SkogsNallen is a modern, **responsive** online store where families can discover
 * Filter by **price, colour** and **keyword**
 * JWT‑powered **signup / login**
 * Live **order history & status**
-* **Stripe Checkout** with web‑hook confirmation
+* **Stripe Checkout** 
 
 </details>
 
