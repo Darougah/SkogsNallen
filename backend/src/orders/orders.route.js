@@ -27,8 +27,8 @@ router.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-success_url: `https://skogsnallen-1.onrender.com/success?session_id={CHECKOUT_SESSION_ID}`,
-cancel_url: `https://skogsnallen-1.onrender.com/cancel`,
+success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+cancel_url: `${process.env.FRONTEND_URL}/cancel`,
 
     });
 
